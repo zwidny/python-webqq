@@ -17,6 +17,7 @@ class Config(IniFile):
 		self.proxy_enable = self.get_value('proxy_enable')
 		self.proxy_uri = self.get_value('proxy_uri')
 		self.hot_key = self.get_value('hot_key')
+		self.save_path = self.get_value('save_path')
 	
 	def save(self):
 		self.set_value('login_auto_run', self.login_auto_run)
@@ -25,4 +26,5 @@ class Config(IniFile):
 		self.set_value('proxy_enable', self.proxy_enable)
 		self.set_value('proxy_uri', self.proxy_uri)
 		self.set_value('hot_key', self.hot_key)
+		self.set_value('save_path', self.save_path)
 		self.write(const.CONFIG_FILE)

@@ -4,7 +4,6 @@
   <!-- interface-naming-policy project-wide -->
   <widget class="GtkWindow" id="winConfig">
     <property name="width_request">440</property>
-    <property name="height_request">250</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">配置</property>
     <property name="resizable">False</property>
@@ -19,7 +18,7 @@
             <property name="visible">True</property>
             <property name="extension_events">cursor</property>
             <property name="border_width">4</property>
-            <property name="n_rows">6</property>
+            <property name="n_rows">7</property>
             <property name="n_columns">2</property>
             <property name="row_spacing">4</property>
             <child>
@@ -166,6 +165,29 @@ Q我吧
                 <property name="bottom_attach">6</property>
               </packing>
             </child>
+            <child>
+              <widget class="GtkLabel" id="label8">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">保存路径</property>
+              </widget>
+              <packing>
+                <property name="top_attach">6</property>
+                <property name="bottom_attach">7</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkFileChooserButton" id="dcbtnSavePath">
+                <property name="visible">True</property>
+                <property name="action">select-folder</property>
+                <property name="title" translatable="yes">选择目录</property>
+              </widget>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">6</property>
+                <property name="bottom_attach">7</property>
+              </packing>
+            </child>
           </widget>
           <packing>
             <property name="position">0</property>
@@ -186,7 +208,6 @@ Q我吧
             <child>
               <widget class="GtkButton" id="btnSave">
                 <property name="label">gtk-ok</property>
-                <property name="width_request">80</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -196,14 +217,12 @@ Q我吧
               </widget>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">False</property>
                 <property name="position">1</property>
               </packing>
             </child>
             <child>
               <widget class="GtkButton" id="btnCancle">
                 <property name="label">gtk-cancel</property>
-                <property name="width_request">80</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -211,13 +230,12 @@ Q我吧
               </widget>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">False</property>
                 <property name="position">2</property>
               </packing>
             </child>
           </widget>
           <packing>
-            <property name="expand">False</property>
+            <property name="padding">4</property>
             <property name="position">1</property>
           </packing>
         </child>

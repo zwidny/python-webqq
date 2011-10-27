@@ -34,6 +34,9 @@ class ConfigWindow:
 		self.txtHotkey.set_text(self.config.hot_key)
 		self.txtHotkey.connect("button-release-event", self.hot_key_clicked)
 		
+		self.dcbtnSavePath = self.xml.get_widget('dcbtnSavePath')
+		self.dcbtnSavePath.set_current_folder(self.config.save_path)
+		
 		self.btnSave = self.xml.get_widget('btnSave')
 		self.btnSave.connect("clicked", self.btnsave_clicked)
 		self.btnCancle = self.xml.get_widget('btnCancle')
@@ -72,6 +75,7 @@ class ConfigWindow:
 	def btnsave_clicked(self, widget):
 		self.config.login_password = self.txtPassword.get_text()
 		self.config.proxy_uri = self.txtProxyUri.get_text()
+		self.config.save_path = self.dcbtnSavePath.get_current_folder()
 		try:
 			keybinder.unbind(self.config.hot_key)
 		except:

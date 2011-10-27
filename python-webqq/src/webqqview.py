@@ -19,8 +19,9 @@ class WebQQView(webkit.WebView):
 	def __init__(self, config):
 		webkit.WebView.__init__(self)
 		self.hovered_uri = None
-		self.user_download_dir = utils.get_user_download_dir()
 		self.config = config
+		if self.config.save_path == '':
+			self.config.save_path = utils.get_user_download_dir()
 		self.init_settings()
 		self.init_cookie()
 		self.init_proxy()
@@ -84,16 +85,16 @@ class WebQQView(webkit.WebView):
 
 	def download_requested(self, view, download):
 		download.connect('notify::status', self.download_status)
-		download.set_destination_uri('file://' + self.user_download_dir + '/' + download.get_suggested_filename())
+		download.set_destination_uri('file://' + self.config.save_path + '/' + download.get_suggested_filename())
 		return True
 
 	def download_status(self, download, pspec):
 		if download.get_status() == -1:
-			utils.notification("文件下载失败", self.user_download_dir + '/' + download.get_suggested_filename())
+			utils.notification("文件下载失败", self.config.save_path + '/' + download.get_suggested_filename())
 		if download.get_status() == 1:
-			utils.notification("文件开始下载", self.user_download_dir + '/' + download.get_suggested_filename())
+			utils.notification("文件开始下载", self.config.save_path + '/' + download.get_suggested_filename())
 		if download.get_status() == 3:
-			utils.notification("文件下载完成", self.user_download_dir + '/' + download.get_suggested_filename())
+			utils.notification("文件下载完成", self.config.save_path + '/' + download.get_suggested_filename())
 
 	def create_webView(self, view, frame):
 		if self.hovered_uri:
