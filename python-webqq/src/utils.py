@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding=utf-8 -*-
 
-import pynotify, platform, re, string, os
+import pynotify, re, os
 import const
 from inifile import IniFile
 
@@ -28,14 +28,6 @@ def same_title(t1, t2):
 
 def shift_string(string, i):
 	return string[i:] + string[:i]
-
-def is_ubuntu_11_xx():
-	(name, version, codename) = platform.linux_distribution()
-	print name, version, codename
-	if name != 'Ubuntu':
-		return False
-	version = string.atof(version)
-	return version > 10.10
 
 def is_unity():
 	return os.getenv('DESKTOP_SESSION').startswith('ubuntu')

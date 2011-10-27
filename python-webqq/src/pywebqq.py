@@ -15,7 +15,7 @@ class WebQQ():
 		self.window = MainWindow(self.webview, config)
 		
 		tray = __import__("tray", fromlist = ['*'])
-		if utils.is_ubuntu_11_xx() and utils.is_unity():
+		if utils.is_unity():
 			tray = __import__("unitytray", fromlist = ['*'])
 		
 		self.tray = tray.Tray(self.window, self.webview, config)

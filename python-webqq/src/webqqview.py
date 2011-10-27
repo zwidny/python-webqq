@@ -4,13 +4,16 @@
 import os, webkit, ctypes, webbrowser
 import const, utils
 
-if utils.is_ubuntu_11_xx():
-	libgobject = ctypes.CDLL('/usr/lib/i386-linux-gnu/libgobject-2.0.so.0')
-	libwebkit = ctypes.CDLL('/usr/lib/libwebkitgtk-1.0.so.0')
-else:	
-	libgobject = ctypes.CDLL('/usr/lib/libgobject-2.0.so.0')
-	libwebkit = ctypes.CDLL('/usr/lib/libwebkit-1.0.so.2')
-libsoup = ctypes.CDLL('/usr/lib/libsoup-2.4.so.1')
+try:
+	libwebkit = ctypes.CDLL('libwebkitgtk-1.0.so.0')
+except:
+	try:
+		libwebkit = ctypes.CDLL('libwebkit-1.0.so.2')
+	except:
+		libwebkit = ctypes.CDLL('libwebkitgtk-1.0.so')
+	
+libgobject = ctypes.CDLL('libgobject-2.0.so.0')
+libsoup = ctypes.CDLL('libsoup-2.4.so.1')
 
 class WebQQView(webkit.WebView):
 	def __init__(self, config):
