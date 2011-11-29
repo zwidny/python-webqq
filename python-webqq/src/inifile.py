@@ -62,10 +62,11 @@ class IniFile:
         if not os.path.isdir(os.path.dirname(filename)):
             os.makedirs(os.path.dirname(filename))
 
-        fp = codecs.open(filename, 'w')
+        fp = codecs.open(filename, 'w', 'utf-8')
         for (key, value) in self.content.items():
             fp.write("%s=%s\n" % (key, value))
         fp.write("\n")
+        fp.close()
 
     def set_value(self, key, value):
         self.content[key] = value

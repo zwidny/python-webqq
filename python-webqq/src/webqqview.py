@@ -20,8 +20,6 @@ class WebQQView(webkit.WebView):
 		webkit.WebView.__init__(self)
 		self.hovered_uri = None
 		self.config = config
-		if self.config.save_path == '':
-			self.config.save_path = utils.get_user_download_dir()
 		self.init_settings()
 		self.init_cookie()
 		self.init_proxy()
@@ -39,7 +37,7 @@ class WebQQView(webkit.WebView):
 
 	def init_cookie(self):
 		if not os.path.exists(const.COOKIE_PATH):
-			os.mkdir(const.COOKIE_PATH)
+			os.makedirs(const.COOKIE_PATH)
 		if not os.path.exists(const.COOKIE_FILE):
 			os.mknod(const.COOKIE_FILE)
 		session = libwebkit.webkit_get_default_session()

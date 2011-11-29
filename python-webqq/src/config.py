@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding=utf-8 -*-
 
-import const
+import const, os, utils
 from inifile import IniFile
 
 class Config(IniFile):
@@ -11,6 +11,15 @@ class Config(IniFile):
 		self.login_states = ('10', '20', '30', '40', '50', '60', '70')
 		self.login_states_dict = {'10': 0, '20': 1, '30': 2, '40': 3, '50': 4, '60': 5, '70': 6}
 		
+		if not os.path.exists(const.CONFIG_FILE):
+			self.set_value('login_auto_run', 'yes')
+			self.set_value('login_password', '')
+			self.set_value('login_status', '40')
+			self.set_value('proxy_enable', 'no')
+			self.set_value('proxy_uri', 'http://127.0.0.1:8000')
+			self.set_value('hot_key', '<Alt>Q')
+			self.set_value('save_path', utils.get_user_download_dir())
+
 		self.login_auto_run = self.get_value('login_auto_run')
 		self.login_password = self.get_value('login_password')
 		self.login_status = self.get_value('login_status')
