@@ -12,7 +12,7 @@ def notification(content, title):
 	pynotify.init(const.INIIAL_TITLE)
 	notify = pynotify.Notification(content, title, const.ICON)
 	notify.set_urgency(pynotify.URGENCY_NORMAL)
-	notify.set_timeout(1)
+	notify.set_timeout(3)
 	notify.show()
 
 def same_title(t1, t2):
@@ -30,7 +30,10 @@ def shift_string(string, i):
 	return string[i:] + string[:i]
 
 def is_unity():
-	return os.getenv('DESKTOP_SESSION').startswith('ubuntu')
+	desktop_env = os.getenv('DESKTOP_SESSION')
+	if desktop_env != None:
+		return desktop_env.startswith('ubuntu')
+	return False
 
 def is_qq_download(uri):
 	return QQ_DOWNLOAD_PATTERN.match(uri) != None
