@@ -36,12 +36,13 @@ class WebQQView(webkit.WebView):
 		#settings.set_property('user-agent', 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.4+ (KHTML, like Gecko) Chrome/14.0.835.202 Safari/535.4+')
 
 	def init_cookie(self):
-		if not os.path.exists(const.COOKIE_PATH):
-			os.makedirs(const.COOKIE_PATH)
 		if not os.path.exists(const.COOKIE_FILE):
 			os.mknod(const.COOKIE_FILE)
 		session = libwebkit.webkit_get_default_session()
-		libgobject.g_object_set(session, 'add-feature', libsoup.soup_cookie_jar_text_new(const.COOKIE_FILE, False), None)
+		soup_cookie = libsoup.soup_cookie_jar_text_new(const.COOKIE_FILE, False)
+		if soup_cookie < 0:
+			raise Exception("Incorrect cookie value: %s" % (soup_cookie))
+		libgobject.g_object_set(session, 'add-feature', soup_cookie, None)
 		
 	def init_proxy(self):
 		if self.config.proxy_enable == 'yes':
