@@ -36,6 +36,8 @@ class WebQQView(webkit.WebView):
 		#settings.set_property('user-agent', 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.4+ (KHTML, like Gecko) Chrome/14.0.835.202 Safari/535.4+')
 
 	def init_cookie(self):
+		if not os.path.exists(const.COOKIE_PATH):
+			os.makedirs(const.COOKIE_PATH)
 		if not os.path.exists(const.COOKIE_FILE):
 			os.mknod(const.COOKIE_FILE)
 		session = libwebkit.webkit_get_default_session()
