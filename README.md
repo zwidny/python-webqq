@@ -1,6 +1,10 @@
 # python-webqq
 Automatically exported from code.google.com/p/python-webqq
 
++ Intro
+  
+  A client QQ for Debian base on the protocol of SmartQQ and WebQQ
+
 + Requirement
 
   - Debian 
